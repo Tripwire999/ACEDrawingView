@@ -400,6 +400,138 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 @end
 
+#pragma mark - ACEDrawingSquareTool
+
+@interface ACEDrawingSquareTool ()
+
+@property (nonatomic, assign) CGPoint firstPoint;
+@property (nonatomic, assign) CGPoint lastPoint;
+
+@end
+
+#pragma mark -
+
+@implementation ACEDrawingSquareTool
+
+@synthesize lineColor = _lineColor;
+@synthesize lineAlpha = _lineAlpha;
+@synthesize lineWidth = _lineWidth;
+
+- (void)setInitialPoint:(CGPoint)firstPoint
+{
+    self.firstPoint = firstPoint;
+}
+
+- (void)moveFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint
+{
+    self.lastPoint = endPoint;
+}
+
+- (void)draw
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // set the properties
+    CGContextSetAlpha(context, self.lineAlpha);
+    
+    // draw the rectangle
+    CGRect rectToFill = CGRectMake(self.firstPoint.x, self.firstPoint.y, self.lastPoint.x - self.firstPoint.x, self.lastPoint.y - self.firstPoint.y);
+    if (self.fill) {
+        CGContextSetFillColorWithColor(context, self.lineColor.CGColor);
+        CGContextFillRect(UIGraphicsGetCurrentContext(), rectToFill);
+        
+    } else {
+        CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
+        CGContextSetLineWidth(context, self.lineWidth);
+        CGContextStrokeRect(UIGraphicsGetCurrentContext(), rectToFill);
+    }
+}
+
+- (ACEDrawingToolState *)captureToolState
+{
+    return [ACEDrawingToolState stateForTool:self];
+}
+
+- (void)dealloc
+{
+    self.lineColor = nil;
+#if !ACE_HAS_ARC
+    [super dealloc];
+#endif
+}
+
+
+@end
+
+
+#pragma mark - ACEDrawingDiamondTool
+
+@interface ACEDrawingDiamondTool ()
+
+@property (nonatomic, assign) CGPoint firstPoint;
+@property (nonatomic, assign) CGPoint lastPoint;
+
+@end
+
+#pragma mark -
+
+@implementation ACEDrawingDiamondTool
+
+@synthesize lineColor = _lineColor;
+@synthesize lineAlpha = _lineAlpha;
+@synthesize lineWidth = _lineWidth;
+
+-(void)setInitialPoint:(CGPoint)firstPoint {
+    self.firstPoint = firstPoint;
+}
+
+-(void)moveFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint {
+    self.lastPoint = endPoint;
+}
+
+-(void)draw {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGFloat capHeight = self.lineWidth * 4.0f;
+    
+    // set the line properties
+    CGContextSetStrokeColorWithColor(context, _lineColor.CGColor);
+    CGContextSetLineCap(context, kCGLineCapSquare);
+    CGContextSetLineWidth(context, self.lineWidth);
+    CGContextSetAlpha(context, self.lineAlpha);
+
+    // draw the diamond
+    CGContextMoveToPoint(context, self.firstPoint.x, self.firstPoint.y);
+    CGContextAddLineToPoint(context, self.firstPoint.x + 100, self.firstPoint.y + 150);
+    
+    CGContextMoveToPoint(context, self.firstPoint.x + 100, self.firstPoint.y + 150);
+    CGContextAddLineToPoint(context, self.firstPoint.x, self.firstPoint.y + 300);
+    
+    CGContextMoveToPoint(context, self.firstPoint.x, self.firstPoint.y);
+    CGContextAddLineToPoint(context, self.firstPoint.x - 100, self.firstPoint.y + 150);
+    
+    CGContextAddLineToPoint(context, self.firstPoint.x, self.firstPoint.y + 300);
+//    CGContextAddLineToPoint(context, self.lastPoint.x, self.lastPoint.y);
+//    
+    CGContextStrokePath(context);
+   
+}
+
+- (ACEDrawingToolState *)captureToolState
+{
+    return [ACEDrawingToolState stateForTool:self];
+}
+
+- (void)dealloc
+{
+    self.lineColor = nil;
+#if !ACE_HAS_ARC
+    [super dealloc];
+#endif
+}
+
+@end
+
 
 #pragma mark - ACEDrawingEllipseTool
 

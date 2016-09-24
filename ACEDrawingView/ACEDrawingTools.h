@@ -115,7 +115,23 @@
 
 #pragma mark -
 
+@interface ACEDrawingSquareTool : NSObject<ACEDrawingTool>
+
+@property (nonatomic, assign) BOOL fill;
+
+@end
+
+#pragma mark -
+
 @interface ACEDrawingEllipseTool : NSObject<ACEDrawingTool>
+
+@property (nonatomic, assign) BOOL fill;
+
+@end
+
+#pragma mark - 
+
+@interface ACEDrawingDiamondTool : NSObject<ACEDrawingTool>
 
 @property (nonatomic, assign) BOOL fill;
 

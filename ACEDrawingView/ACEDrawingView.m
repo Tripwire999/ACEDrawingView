@@ -253,6 +253,34 @@
             return tool;
         }
             
+        case ACEDrawingToolTypeDiamondStroke:
+        {
+            ACEDrawingDiamondTool *tool = ACE_AUTORELEASE([ACEDrawingDiamondTool new]);
+            tool.fill = NO;
+            return tool;
+        }
+            
+        case ACEDrawingToolTypeDiamondFill:
+        {
+            ACEDrawingDiamondTool *tool = ACE_AUTORELEASE([ACEDrawingDiamondTool new]);
+            tool.fill = YES;
+            return tool;
+        }
+            
+        case ACEDrawingToolTypeSquareStroke:
+        {
+            ACEDrawingSquareTool *tool = ACE_AUTORELEASE([ACEDrawingSquareTool new]);
+            tool.fill = NO;
+            return tool;
+        }
+        
+        case ACEDrawingToolTypeSquareFill:
+        {
+            ACEDrawingSquareTool *tool = ACE_AUTORELEASE([ACEDrawingSquareTool new]);
+            tool.fill = YES;
+            return tool;
+        }
+            
         case ACEDrawingToolTypeEraser:
         {
             return ACE_AUTORELEASE([ACEDrawingEraserTool new]);

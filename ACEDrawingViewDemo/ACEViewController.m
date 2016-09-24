@@ -157,6 +157,22 @@
                 case 8:
                     self.drawingView.drawTool = ACEDrawingToolTypeDraggableText;
                     break;
+                    
+                case 9:
+                    self.drawingView.drawTool = ACEDrawingToolTypeDiamondStroke;
+                    break;
+                    
+                case 10:
+                    self.drawingView.drawTool = ACEDrawingToolTypeDiamondFill;
+                    break;
+                    
+                case 11:
+                    self.drawingView.drawTool = ACEDrawingToolTypeSquareStroke;
+                    break;
+                    
+                case 12:
+                    self.drawingView.drawTool = ACEDrawingToolTypeSquareFill;
+                    break;
             }
             
             // if eraser, disable color and alpha selection
@@ -181,14 +197,15 @@
 
 - (IBAction)toolChange:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Selet a tool"
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Select a tool"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"Pen", @"Line", @"Arrow",
                                   @"Rect (Stroke)", @"Rect (Fill)",
                                   @"Ellipse (Stroke)", @"Ellipse (Fill)",
-                                  @"Eraser", @"Draggable Text",
+                                  @"Eraser", @"Draggable Text", @"Diamond (Stroke)", @"Diamond (Fill)",
+                                  @"Square", @"Square (Fill)",
                                   nil];
     
     [actionSheet setTag:kActionSheetTool];
