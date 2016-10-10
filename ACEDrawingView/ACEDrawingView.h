@@ -91,6 +91,10 @@ typedef NS_ENUM(NSUInteger, ACEDrawingMode) {
 - (BOOL)canRedo;
 - (void)redoLatestStep;
 
+// Save & load drawing
+- (void)loadDrawing:(NSMutableArray *)pathArray;
+- (NSMutableArray *) getPathArray;
+
 /**
  @discussion Discards the tool stack and renders them to prev_image, making the current state the 'start' state.
  (Can be called before resize to make content more predictable)

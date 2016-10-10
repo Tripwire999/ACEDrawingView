@@ -488,6 +488,43 @@
     }
 }
 
+- (NSMutableArray *) getPathArray {
+    return _pathArray;
+}
+
+- (void)loadDrawing:(NSMutableArray *)pathArray {
+    
+    _pathArray = pathArray;
+    
+    // init a context
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.0);
+    
+   
+    // erase the previous image
+    self.image = nil;
+        
+    // load previous image (if returning to screen)
+        
+    switch (self.drawMode) {
+        case ACEDrawingModeOriginalSize:
+            [[self.backgroundImage copy] drawAtPoint:CGPointZero];
+        break;
+        case ACEDrawingModeScale:
+            [[self.backgroundImage copy] drawInRect:self.bounds];
+        break;
+    }
+        
+    // I need to redraw all the lines
+    for (id<ACEDrawingTool> tool in self.pathArray) {
+        [tool draw];
+    }
+    
+    // store the image
+    self.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+}
+
+
 #pragma mark - Undo / Redo
 
 - (BOOL)canUndo
