@@ -205,7 +205,8 @@
     switch (self.drawTool) {
         case ACEDrawingToolTypePen:
         {
-            return ACE_AUTORELEASE([ACEDrawingPenTool new]);
+            ACEDrawingPenTool *tool = ACE_AUTORELEASE([ACEDrawingPenTool new]);
+            return tool;
         }
             
         case ACEDrawingToolTypeLine:

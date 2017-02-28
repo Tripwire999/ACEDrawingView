@@ -37,8 +37,7 @@
     return [ACEDrawingToolState stateForTool:tool capturePosition:NO];
 }
 
-+ (instancetype)stateForTool:(id<ACEDrawingTool>)tool capturePosition:(BOOL)capture
-{
++ (instancetype)stateForTool:(id<ACEDrawingTool>)tool capturePosition:(BOOL)capture {
     ACEDrawingToolState *state = [ACEDrawingToolState new];
     state.tool = tool;
     

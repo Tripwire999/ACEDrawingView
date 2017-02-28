@@ -43,7 +43,7 @@
 #endif
 
 
-@protocol ACEDrawingTool <NSObject>
+@protocol ACEDrawingTool <NSObject, NSCoding>
 
 @property (nonatomic, strong) UIColor *lineColor;
 @property (nonatomic, assign) CGFloat lineAlpha;
@@ -71,6 +71,7 @@
 }
 
 - (CGRect)addPathPreviousPreviousPoint:(CGPoint)p2Point withPreviousPoint:(CGPoint)p1Point withCurrentPoint:(CGPoint)cpoint;
+- (NSData *)savePenToolData;
 
 @end
 

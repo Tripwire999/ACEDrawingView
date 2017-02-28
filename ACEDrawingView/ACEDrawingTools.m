@@ -47,7 +47,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 - (id)init
 {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.lineCapStyle = kCGLineCapRound;
         path = CGPathCreateMutable();
     }
@@ -570,7 +570,6 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     if (self.fill) {
         CGContextSetFillColorWithColor(context, self.lineColor.CGColor);
         CGContextFillEllipseInRect(UIGraphicsGetCurrentContext(), rectToFill);
-        
     } else {
         CGContextSetStrokeColorWithColor(context, self.lineColor.CGColor);
         CGContextSetLineWidth(context, self.lineWidth);
